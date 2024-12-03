@@ -1,0 +1,33 @@
+.signIn-page, .signUp-page{
+  background-color: rgba(88, 139, 232, 0.865);
+}
+.signIn-page .r1, .signUp-page .r1{
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+.signIn-page .r1 .cl, .signUp-page .r1 .cl{
+  background-color: white;
+  border-radius: 10px;
+}
+.signIn-page .r1 .cl .input, .signUp-page .r1 .cl .input{
+  margin: 10px 0px;
+  width: 80%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid rgba(88, 139, 232, 0.865);
+}
+.signIn-page .r1 .cl .submit, .signUp-page .r1 .cl .submit{
+  width: 80%;
+  padding: 10px;
+  background-color: rgba(88, 139, 232, 0.865);
+  border: none;
+  color: white;
+}
+.signIn-page .r1 .cl p a, .signUp-page .r1 .cl p a{
+  color: rgba(88, 139, 232, 0.865);
+}
+.bdr{
+  border: 2px solid rgba(88, 139, 232, 0.865);
+}
