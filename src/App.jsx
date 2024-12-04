@@ -1,12 +1,14 @@
-import './App.css'
-import './firebase.js'
-import SignIn from './Pages/SignIn'
-import SignUp from './Pages/SignUp'
-import Home from './Pages/Home'
+import "./App.css";
+import List from "./components/list/List";
+import Chat from "./components/chat/Chat";
+import Detail from "./components/detail/Detail";
 
 export default function App() {
-
   return (
-    <SignUp />
-  )
+    <div className="container">
+      <List />
+      <Chat />
+      <Detail />
+    </div>
+  );
 }

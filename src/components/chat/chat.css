@@ -1,0 +1,150 @@
+.chat{
+    flex: 2;
+    border-right: 1px solid rgba(120, 120, 120, 0.758);
+    border-left: 1px solid rgba(120, 120, 120, 0.758);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .top{
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(120, 120, 120, 0.758);
+        .user{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                object-fit: cover;
+            }
+            .texts{
+                display: flex;
+                flex-direction: column;
+                span{
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+                p{
+                    font-size: 13px;
+                    color: rgb(161, 161, 161);
+                    margin: 0px;
+                }
+            }
+        }
+        .icons{
+            display: flex;
+            gap: 20px;
+            img{
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+    .center{
+        flex: 1;
+        padding: 20px;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .message{
+            max-width: 80%;
+            display: flex;
+            gap: 10px;
+            &.own{
+                align-self: flex-end;
+                .texts{
+                    p{
+                        background-color: #5183fe;
+                    }
+                }
+            }
+            img{
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+            }
+            .texts{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                img{
+                    width: 100%;
+                    height: 250px;
+                    border-radius: 5px;
+                    object-fit: cover;
+                }
+                p{
+                    padding: 10px;
+                    background-color: rgba(17, 25, 40, 0.3);
+                    border-radius: 5px;
+                    font-size: 13px;
+                    margin: 0px;
+                }
+                span{
+                    font-size: 11px;
+                }
+            }
+        }
+    }
+    .center::-webkit-scrollbar {
+        width: 5px;
+    }
+    .center::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: rgba(17, 25, 40, 0.5);
+    }
+    .center::-webkit-scrollbar-thumb:hover {
+        background: #5183fe;
+    }  
+    .bottom{
+        padding: 15px;
+        gap: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid rgba(120, 120, 120, 0.758);
+        .icons{
+            display: flex;
+            gap: 20px;
+            img{
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+        }
+        input{
+            flex: 1;
+            background-color: rgba(17, 25, 40, 0.5);
+            border: none;
+            outline: none;
+            padding: 5px;
+            font-size: 15px;
+            border-radius: 5px;
+        }
+        .emoji{
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            position: relative;
+            .picker{
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+            }
+        }
+        .sendButton{
+            border-radius: 5px;
+            background-color: #5183fe;
+            border: none;
+            padding: 5px 10px;
+            font-size: 15px;
+        }
+    }
+}
