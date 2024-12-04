@@ -15,7 +15,7 @@ export default function Chat() {
         <div className="user">
           <img src="./bg.webp" alt="" />
           <div className="texts">
-            <span>Numan Malaya</span>
+            <b>Numan Malaya</b>
             <p>Lorem ipsum dolor sit amet.</p>
           </div>
         </div>

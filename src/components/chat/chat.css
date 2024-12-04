@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     .top{
-        padding: 15px;
+        padding: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -14,22 +14,18 @@
         .user{
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
             img{
-                width: 40px;
-                height: 40px;
+                width: 35px;
+                height: 35px;
                 border-radius: 100%;
                 object-fit: cover;
             }
             .texts{
                 display: flex;
                 flex-direction: column;
-                span{
-                    font-size: 15px;
-                    font-weight: bold;
-                }
                 p{
-                    font-size: 13px;
+                    font-size: 12px;
                     color: rgb(161, 161, 161);
                     margin: 0px;
                 }
@@ -40,14 +36,14 @@
             gap: 20px;
             img{
                 cursor: pointer;
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
             }
         }
     }
     .center{
         flex: 1;
-        padding: 20px;
+        padding: 10px;
         overflow: auto;
         display: flex;
         flex-direction: column;
@@ -65,8 +61,8 @@
                 }
             }
             img{
-                width: 30px;
-                height: 30px;
+                width: 25px;
+                height: 25px;
                 border-radius: 100%;
             }
             .texts{
@@ -81,14 +77,14 @@
                     object-fit: cover;
                 }
                 p{
-                    padding: 10px;
+                    padding: 7px;
                     background-color: rgba(17, 25, 40, 0.3);
                     border-radius: 5px;
-                    font-size: 13px;
+                    font-size: 12px;
                     margin: 0px;
                 }
                 span{
-                    font-size: 11px;
+                    font-size: 10px;
                 }
             }
         }
@@ -104,7 +100,7 @@
         background: #5183fe;
     }  
     .bottom{
-        padding: 15px;
+        padding: 10px;
         gap: 20px;
         display: flex;
         align-items: center;
@@ -125,7 +121,7 @@
             border: none;
             outline: none;
             padding: 5px;
-            font-size: 15px;
+            font-size: 14px;
             border-radius: 5px;
         }
         .emoji{
@@ -135,7 +131,7 @@
             position: relative;
             .picker{
                 position: absolute;
-                bottom: 0px;
+                bottom: 40px;
                 left: 0px;
             }
         }

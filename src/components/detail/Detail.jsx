@@ -38,6 +38,15 @@ export default function Detail() {
               <BsDownload className="icon"/>
             </div>
           </div>
+          <div className="photos">
+            <div className="photoItem">
+              <div className="photoDetail">
+                <img src="./bg.jpg" alt="" />
+                <span>photo_2024_2.png</span>
+              </div>
+              <BsDownload className="icon"/>
+            </div>
+          </div>
         </div>
         <div className="option">
           <div className="title">
