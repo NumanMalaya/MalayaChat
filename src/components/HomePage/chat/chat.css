@@ -138,6 +138,7 @@
         .sendButton{
             border-radius: 5px;
             background-color: #5183fe;
+            color: white;
             border: none;
             padding: 5px 10px;
             font-size: 15px;

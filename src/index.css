@@ -2,7 +2,6 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    color: white;
 }
 body{
     background-image: url(/bg.jpg);
@@ -22,4 +21,10 @@ body{
     backdrop-filter: blur(10px) saturate(300%);
     border-radius: 10px;
     display: flex;
+}
+.loading{
+    padding: 50px;
+    font-size: 36px;
+    border-radius: 5px;
+    background-color: rgba(17, 25, 40, 0.9);
 }
