@@ -56,7 +56,7 @@ export default function ChatList() {
           <p>Hello</p>
         </div>
       </div>
-      {addMode && <AddUser/>}
+      {addMode && <AddUser />}
     </div>
   );
 }

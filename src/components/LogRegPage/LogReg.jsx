@@ -10,7 +10,8 @@ import { doc, setDoc } from "firebase/firestore";
 
 export default function LogReg() {
   const [err, setErr] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [registerLoading, setRegisterLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
   const [avatar, setAvatar] = useState({
     file: null,
     url: "",
@@ -24,24 +25,24 @@ export default function LogReg() {
   };
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setLoginLoading(true);
     const formData = new FormData(e.target);
     const { email, password } = Object.fromEntries(formData);
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      toast.success("login");
+      toast.success("Successfully login!");
     } catch (error) {
       toast.error(error.message);
+      toast.error("Login error!");
     } finally {
-      setLoading(false);
+      setLoginLoading(false);
     }
   };
   const handleRegister = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setRegisterLoading(true);
     const formData = new FormData(e.target);
-
     const { username, email, password } = Object.fromEntries(formData);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -58,11 +59,12 @@ export default function LogReg() {
       await setDoc(doc(db, "userchats", res.user.uid), {
         chats: [],
       });
-      toast.success("Account created! You can login now!");
+      toast.success("Account created!");
     } catch (err) {
       toast.error(err.message);
+      toast.error("Register error!");
     } finally {
-      setLoading(false);
+      setRegisterLoading(false);
     }
   };
 
@@ -83,8 +85,8 @@ export default function LogReg() {
             placeholder="Password"
             name="password"
           />
-          <button disabled={loading} className="submit mt-4">
-            {loading ? "loading" : "Login"}
+          <button disabled={loginLoading} className="submit mt-4">
+            {loginLoading ? "loading" : "Login"}
           </button>
         </form>
       </div>
@@ -120,8 +122,8 @@ export default function LogReg() {
             name="password"
           />
           {err && <span className="d-block text-danger">Someting went wrong</span>}
-          <button disabled={loading} className="submit mt-4">
-            {loading ? "loading" : "Register"}
+          <button disabled={registerLoading} className="submit mt-4">
+            {registerLoading ? "loading" : "Register"}
           </button>
         </form>
       </div>
