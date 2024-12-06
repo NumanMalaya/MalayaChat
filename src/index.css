@@ -41,10 +41,9 @@ body{
         border: 5px solid red;
     }
     .container {
-        border: 5px solid red;
-        margin-top: 80px;
+        border: 5px solid green;
         width: 780vw; 
-        height: 360vh;
+        height: 300vh;
         overflow-y: hidden;
     }
 }
