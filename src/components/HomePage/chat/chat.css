@@ -124,12 +124,12 @@
             border-radius: 5px;
         }
         .emoji{
-            width: 20px;
-            height: 20px;
             cursor: pointer;
             position: relative;
             img{
-                margin-top: -10px;
+                margin-top: -5px;
+                width: 20px;
+                height: 20px;   
             }
             .picker{
                 position: absolute;
@@ -144,3 +144,6 @@
     }
 }
 
+@media (max-width: 480px) {
+   
+}
