@@ -37,12 +37,14 @@ body{
         background-repeat: repeat;
         width: 800vw; 
         height: 400vh;
-        overflow-y: hidden;
+        /* overflow-y: hidden; */
+        border: 5px solid red;
     }
     .container {
-        margin-top: 100px;
+        border: 5px solid red;
+        margin-top: 80px;
         width: 780vw; 
-        height: 350vh;
+        height: 360vh;
         overflow-y: hidden;
     }
 }
