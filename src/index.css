@@ -12,6 +12,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
     height: 100vh;
 }
 .container{
@@ -23,8 +24,23 @@ body{
     display: flex;
 }
 .loading{
-    padding: 50px;
-    font-size: 36px;
+    padding: 30px 80px;
+    font-size: 40px;
     border-radius: 5px;
     background-color: rgba(17, 25, 40, 0.9);
+}
+
+@media (max-width: 480px) {
+    body {
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+        width: 500vw; 
+        height: 100vh;
+        overflow-y: hidden;
+    }
+    .container {
+        width: 480vw; 
+        height: 100vh;
+    }
 }
