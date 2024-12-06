@@ -146,7 +146,7 @@
     }
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .chat{
         .top{
             padding: 40px;
@@ -234,4 +234,4 @@
             }
         }
     }
-}
+} */

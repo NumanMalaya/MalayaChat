@@ -33,12 +33,13 @@ body{
 @media (max-width: 480px) {
     body {
         background-repeat: repeat;
-        width: 800vw; 
-        height: 400vh;
+        /* width: 400vw;  */
+        /* height: 100vh; */
     }
     .container {
-        width: 780vw; 
-        height: 380vh;
+        /* padding: 20px; */
+        /* width: 580vw;  */
+        /* height: 80vh; */
         overflow-y: hidden;
     }
     .loading{

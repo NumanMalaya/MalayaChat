@@ -69,7 +69,7 @@
     background: #5183fe;
 }  
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .chatList{
           .search{
             gap: 20px;
@@ -107,4 +107,4 @@
             }
         }
     }
-}
+} */
