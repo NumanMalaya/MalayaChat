@@ -31,19 +31,9 @@ body{
 }
 
 @media (max-width: 480px) {
-    body {
-        /* background-repeat: repeat; */
-        /* width: 400vw;  */
-        /* height: 100vh; */
-    }
     .container {
-        /* padding: 20px; */
-        /* width: 580vw;  */
-        /* height: 80vh; */
         overflow-y: hidden;
-    }
-    .loading{
-        padding: 120px 320px;
-        font-size: 160px;
+        width: 95vw;
+        height: 95vh;
     }
 }
