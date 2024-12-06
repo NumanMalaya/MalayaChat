@@ -10,11 +10,11 @@ import { doc, setDoc } from "firebase/firestore";
 
 export default function LogReg() {
   const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [avatar, setAvatar] = useState({
     file: null,
     url: "",
   });
-  const [loading, setLoading] = useState(false);
   const handleAvatar = (e) => {
     e.target.files[0] &&
       setAvatar({
@@ -31,8 +31,8 @@ export default function LogReg() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("login");
-    } catch (err) {
-      toast.error(err.message);
+    } catch (error) {
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -119,7 +119,7 @@ export default function LogReg() {
             placeholder="Password"
             name="password"
           />
-          {err && <span>Someting went wrong</span>}
+          {err && <span className="d-block text-danger">Someting went wrong</span>}
           <button disabled={loading} className="submit mt-4">
             {loading ? "loading" : "Register"}
           </button>

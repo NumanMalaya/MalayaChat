@@ -4,8 +4,9 @@ import { doc, getDoc } from "firebase/firestore";
 
 export const useUserStore = create((set) => ({
   currentUser: null,
-  isLoading: true,
+  isLoading: false,
   fetchUserInfo: async(uid) =>{
+    set({ isLoading: true });
     if(!uid) return set({currentUser:null, isLoading:false});
     try{
         const docRef = doc(db, "users", uid);
