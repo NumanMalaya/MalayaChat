@@ -145,3 +145,93 @@
         }
     }
 }
+
+@media (max-width: 480px) {
+    .chat{
+        .top{
+            padding: 40px;
+            .user{
+                gap: 20px;
+                img{
+                    width: 140px;
+                    height: 140px;
+                }
+                .texts{
+                    p{
+                        font-size: 48px;
+                    }
+                    b{
+                        font-size: 64px;
+                    }
+                }
+            }
+            .icons{
+                gap: 40px;
+                img{
+                    width: 72px;
+                    height: 72px;
+                }
+            }
+        }
+        .center{
+            padding: 40px;
+            gap: 40px;
+            .message{
+                gap: 20px;
+                img{
+                    width: 100px;
+                    height: 100px;
+                }
+                .texts{
+                    gap: 10px;
+                    img{
+                        height: 100%;
+                    }
+                    p{
+                        padding: 28px;
+                        font-size: 48px;
+                    }
+                    span{
+                        font-size: 40px;
+                    }
+                }
+            }
+        }
+        .center::-webkit-scrollbar {
+            width: 5px;
+        }
+        .center::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: rgba(17, 25, 40, 0.5);
+        }
+        .center::-webkit-scrollbar-thumb:hover {
+            background: #5183fe;
+        }  
+        .bottom{
+            padding: 40px;
+            gap: 40px;
+            .icons{
+                gap: 40px;
+                img{
+                    width: 80px;
+                    height: 80px;
+                }
+            }
+            input{
+                padding: 20px;
+                font-size: 56px;
+            }
+            .emoji{
+                width: 100px;
+                height: 100px;
+                .picker{
+                    bottom: 160px;
+                }
+            }
+            .sendButton{
+                padding: 20px 40px;
+                font-size: 60px;
+            }
+        }
+    }
+}

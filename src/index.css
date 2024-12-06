@@ -37,7 +37,6 @@ body{
         height: 400vh;
     }
     .container {
-        border:20px solid red;
         width: 780vw; 
         height: 380vh;
         overflow-y: hidden;
