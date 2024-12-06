@@ -6,9 +6,7 @@ import { ToastContainer } from "react-toastify";
 export default function Notification() {
   return (
     <div className="notification">
-      <ToastContainer position="bottom-right"
-      autoClose={10000}
-      />
+      <ToastContainer position="bottom-right" />
     </div>
   );
 }
