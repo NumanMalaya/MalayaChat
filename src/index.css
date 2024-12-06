@@ -37,7 +37,6 @@ body{
         background-repeat: repeat;
         width: 800vw; 
         height: 400vh;
-        /* overflow-y: hidden; */
         border: 5px solid red;
     }
     .container {
