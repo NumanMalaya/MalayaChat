@@ -110,7 +110,7 @@ export default function Chat() {
             <EmojiPicker open={open} theme="dark" onEmojiClick={handleEmoji} />
           </div>
         </div>
-        <button className="sendButton">Send</button>
+        <img src="./send.svg" className="sendButton" alt="" />
       </div>
     </div>
   );

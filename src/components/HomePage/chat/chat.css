@@ -3,7 +3,6 @@
     border-right: 1px solid rgba(120, 120, 120, 0.758);
     border-left: 1px solid rgba(120, 120, 120, 0.758);
     height: 100%;
-    width: 100%;
     display: flex;
     flex-direction: column;
     .top{
@@ -102,14 +101,13 @@
     }  
     .bottom{
         padding: 10px;
-        gap: 20px;
+        gap: 10px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
         border-top: 1px solid rgba(120, 120, 120, 0.758);
         .icons{
             display: flex;
-            gap: 20px;
+            gap: 10px;
             img{
                 width: 20px;
                 height: 20px;
@@ -126,10 +124,13 @@
             border-radius: 5px;
         }
         .emoji{
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
             position: relative;
+            img{
+                margin-top: -10px;
+            }
             .picker{
                 position: absolute;
                 bottom: 40px;
@@ -137,12 +138,9 @@
             }
         }
         .sendButton{
-            border-radius: 5px;
-            background-color: #5183fe;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            font-size: 15px;
+            width: 20px;
+            cursor: pointer;
         }
     }
 }
+
