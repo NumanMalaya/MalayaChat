@@ -35,12 +35,13 @@ body{
         background-size: cover;
         background-position: center;
         background-repeat: repeat;
-        width: 500vw; 
-        height: 100vh;
+        width: 600vw; 
+        height: 400vh;
         overflow-y: hidden;
     }
     .container {
-        width: 480vw; 
-        height: 100vh;
+        width: 580vw; 
+        height: 380vh;
+        overflow-y: hidden;
     }
 }
