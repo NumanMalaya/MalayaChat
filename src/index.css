@@ -32,8 +32,6 @@ body{
 
 @media (max-width: 480px) {
     body {
-        background-size: cover;
-        background-position: center;
         background-repeat: repeat;
         width: 800vw; 
         height: 400vh;
@@ -47,7 +45,5 @@ body{
     .loading{
         padding: 60px 160px;
         font-size: 80px;
-        border-radius: 5px;
-        background-color: rgba(17, 25, 40, 0.9);
     }
 }

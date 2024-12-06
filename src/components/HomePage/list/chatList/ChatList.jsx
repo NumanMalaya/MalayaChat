@@ -9,7 +9,7 @@ export default function ChatList() {
     <div className="chatList">
       <div className="search mb-3">
         <div className="searchBar">
-          <FaSearch className="search" />
+          <FaSearch className="searchIcon" />
           <input type="text" placeholder="Search..." />
         </div>
         {addMode ? (
