@@ -37,12 +37,12 @@ body{
         background-repeat: repeat;
         width: 800vw; 
         height: 400vh;
-        border: 5px solid red;
+        border:20px solid green;
     }
     .container {
-        border: 5px solid green;
+        border:20px solid green;
         width: 780vw; 
-        height: 300vh;
+        height: 380vh;
         overflow-y: hidden;
     }
 }
