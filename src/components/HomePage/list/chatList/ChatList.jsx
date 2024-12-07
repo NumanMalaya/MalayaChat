@@ -29,28 +29,28 @@ export default function ChatList() {
         )}
       </div>
       <div className="item">
-        <img src="./bg2.avif" alt="" />
+        <img src="./data/bg2.avif" alt="" />
         <div className="texts">
           <span>Numan Malaya</span>
           <p>Hello</p>
         </div>
       </div>
       <div className="item">
-        <img src="./bg2.avif" alt="" />
+        <img src="./data/bg2.avif" alt="" />
         <div className="texts">
           <span>Numan Malaya</span>
           <p>Hello</p>
         </div>
       </div>
       <div className="item">
-        <img src="./bg2.avif" alt="" />
+        <img src="./data/bg2.avif" alt="" />
         <div className="texts">
           <span>Numan Malaya</span>
           <p>Hello</p>
         </div>
       </div>
       <div className="item">
-        <img src="./bg2.avif" alt="" />
+        <img src="./data/bg2.avif" alt="" />
         <div className="texts">
           <span>Numan Malaya</span>
           <p>Hello</p>

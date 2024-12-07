@@ -18,16 +18,16 @@ export default function Chat() {
     <div className="chat">
       <div className="top">
         <div className="user">
-          <img src="./bg.webp" alt="" />
+          <img src="./data/bg.webp" alt="" />
           <div className="texts">
             <b>Numan Malaya</b>
             <p>Lorem ipsum dolor sit amet.</p>
           </div>
         </div>
         <div className="icons">
-          <img src="./phone.svg" alt="" />
-          <img src="./video.svg" alt="" />
-          <img src="./info.svg" alt="" />
+          <img src="./data/phone.svg" alt="" />
+          <img src="./data/video.svg" alt="" />
+          <img src="./data/info.svg" alt="" />
         </div>
       </div>
       <div className="center">
@@ -42,7 +42,7 @@ export default function Chat() {
           </div>
         </div>
         <div className="message">
-          <img src="./bg.jpg" alt="" />
+          <img src="./data/bg.jpg" alt="" />
           <div className="texts">
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
@@ -63,7 +63,7 @@ export default function Chat() {
           </div>
         </div>
         <div className="message">
-          <img src="./bg.jpg" alt="" />
+          <img src="./data/bg.jpg" alt="" />
           <div className="texts">
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
@@ -75,7 +75,7 @@ export default function Chat() {
         </div>
         <div className="message own">
           <div className="texts">
-            <img src="./bg.jpg" alt="" />
+            <img src="./data/bg.jpg" alt="" />
             <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit.
               Consequatur soluta laudantium voluptatum possimus saepe nostrum
@@ -88,9 +88,9 @@ export default function Chat() {
       </div>
       <div className="bottom">
         <div className="icons">
-          <img src="./img.svg" alt="" />
-          <img src="./camera.svg" alt="" />
-          <img src="./mic.svg" alt="" />
+          <img src="./data/img.svg" alt="" />
+          <img src="./data/camera.svg" alt="" />
+          <img src="./data/mic.svg" alt="" />
         </div>
         <input
           type="text"
@@ -100,7 +100,7 @@ export default function Chat() {
         />
         <div className="emoji">
           <img
-            src="./face.svg"
+            src="./data/face.svg"
             onClick={() => {
               setOpen(!open);
             }}
@@ -110,7 +110,7 @@ export default function Chat() {
             <EmojiPicker open={open} theme="dark" onEmojiClick={handleEmoji} />
           </div>
         </div>
-        <img src="./send.svg" className="sendButton" alt="" />
+        <img src="./data/send.svg" className="sendButton" alt="" />
       </div>
     </div>
   );

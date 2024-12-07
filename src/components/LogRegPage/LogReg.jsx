@@ -7,14 +7,14 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import axios from "axios";
 
 export default function LogReg() {
-  const [err, setErr] = useState(false);
   const [registerLoading, setRegisterLoading] = useState(false);
   const [loginLoading, setLoginLoading] = useState(false);
   const [avatar, setAvatar] = useState({
     file: null,
-    url: "",
+    url: "data/avatar.webp",
   });
   const handleAvatar = (e) => {
     e.target.files[0] &&
@@ -22,6 +22,20 @@ export default function LogReg() {
         file: e.target.files[0],
         url: URL.createObjectURL(e.target.files[0]),
       });
+  };
+  const uploadPic = async () => {
+    if (!avatar.file) return null;
+    const formData = new FormData();
+    formData.append("avatar", avatar.file);
+    try {
+      await axios.post("http://localhost/malaya/MalayaChatBackend/upload.php", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } catch (error) {
+      toast.error("Image upload failed. " + error);
+    }
   };
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,20 +60,18 @@ export default function LogReg() {
     const { username, email, password } = Object.fromEntries(formData);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      // const imgUrl = await upload(avatar.file);
-      const imgUrl =
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-G-kQKuUE3HzBQgig07yEH_QiQu4Y02S_UQ&s";
+      await uploadPic();
       await setDoc(doc(db, "users", res.user.uid), {
         username,
         email,
-        avatar: imgUrl,
+        avatar: avatar.file.name,
         id: res.user.uid,
         blocked: [],
       });
+      toast.success("Account created!");
       await setDoc(doc(db, "userchats", res.user.uid), {
         chats: [],
       });
-      toast.success("Account created!");
     } catch (err) {
       toast.error(err.message);
       toast.error("Register error!");
@@ -94,7 +106,7 @@ export default function LogReg() {
         <form onSubmit={handleRegister}>
           <h4>Create an Account</h4>
           <div className="avatarDiv">
-            <img src={avatar.url || "./avatar.webp"} alt="" />
+            <img src={avatar.url} alt="" />
             <label htmlFor="avatar">Upload an Image</label>
           </div>
           <input
@@ -121,7 +133,6 @@ export default function LogReg() {
             placeholder="Password"
             name="password"
           />
-          {err && <span className="d-block text-danger">Someting went wrong</span>}
           <button disabled={registerLoading} className="submit mt-4">
             {registerLoading ? "loading" : "Register"}
           </button>

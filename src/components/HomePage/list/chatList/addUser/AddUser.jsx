@@ -9,7 +9,7 @@ export default function AddUser() {
       </form>
       <div className="user">
         <div className="detail">
-            <img src="./avatar.webp" alt="" />
+            <img src="./data/avatar.webp" alt="" />
             <span>Numan Malaya</span>
         </div>
         <button>Add User</button>
