@@ -28,7 +28,7 @@ export default function LogReg() {
     const formData = new FormData();
     formData.append("avatar", avatar.file);
     try {
-      await axios.post("http://localhost/malaya/MalayaChatBackend/upload.php", formData, {
+      await axios.post("https://numanmalaya.online/MalayaChatBackend/upload.php", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
