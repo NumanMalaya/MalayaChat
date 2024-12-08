@@ -27,7 +27,7 @@ export default function LogReg() {
     if (!avatar.file) return null;
     const formData = new FormData();
     formData.append("file", avatar.file);
-    formData.append("upload_preset", "vkhhawxe");
+    formData.append("upload_preset", "malayachat");
     formData.append("cloud_name", "ddurazad4");
 
     try {
