@@ -18,7 +18,6 @@ export default function App() {
       unsub();
     };
   }, [fetchUserInfo]);
-  console.log(currentUser)
   return (
     <div className="container">
       {isLoading && <div className="loading">Loading...</div>} 

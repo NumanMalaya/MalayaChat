@@ -1,19 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
 import "./addUser.css";
+import { db } from "../../../../../lib/firebase";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { useUserStore } from "../../../../../lib/userStore";
+
 export default function AddUser() {
+  const [user, setUser] = useState(null);
+  const { currentUser} = useUserStore();
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const email = formData.get("email");
+    try {
+      const userRef = collection(db, "users");
+      const q = query(userRef, where("email", "==", email));
+      const querySnapShot = await getDocs(q);
+      if (!querySnapShot.empty) {
+        setUser(querySnapShot.docs[0].data());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleAdd = async () => {
+    const chatRef = collection(db, "chats");
+    const userChatsRef = collection(db, "userchats");
+    try {
+      const newChatRef = doc(chatRef) 
+      await setDoc(newChatRef, {
+        createAt: serverTimestamp(),
+        messages: [],
+      });
+
+      await updateDoc(doc(userChatsRef, user.id), {
+        chats:arrayUnion({
+          chatId: newChatRef.id,
+          lastMessage:"",
+          receiverId: currentUser.id,
+          updateAt: Date.now(),
+        })
+      })
+
+      await updateDoc(doc(userChatsRef, currentUser.id), {
+        chats:arrayUnion({
+          chatId: newChatRef.id,
+          lastMessage:"",
+          receiverId: user.id,
+          updateAt: Date.now(),
+        })
+      })
+
+      console.log(newChatRef.id)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="addUser">
-      <form>
-        <input type="text" placeholder="Username" name="username"/>
+      <form onSubmit={handleSearch}>
+        <input type="text" placeholder="Email" name="email" />
         <button>Search</button>
       </form>
-      <div className="user">
-        <div className="detail">
-            <img src="./data/avatar.webp" alt="" />
-            <span>Numan Malaya</span>
+      {user && (
+        <div className="user">
+          <div className="detail">
+            <img src={user.avatar || "./data/avatar.webp"} alt="" />
+            <span>{user.username}</span>
+          </div>
+          <button onClick={handleAdd}>Add User</button>
         </div>
-        <button>Add User</button>
-      </div>
+      )}
     </div>
   );
 }

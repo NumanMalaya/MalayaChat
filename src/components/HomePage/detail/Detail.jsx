@@ -1,7 +1,7 @@
 import "./detail.css";
 import React from "react";
 import { BsDownload } from "react-icons/bs";
-
+import { auth } from "../../../lib/firebase";
 
 export default function Detail() {
   return (
@@ -35,7 +35,7 @@ export default function Detail() {
                 <img src="./data/bg.jpg" alt="" />
                 <span>photo_2024_2.png</span>
               </div>
-              <BsDownload className="icon"/>
+              <BsDownload className="icon" />
             </div>
           </div>
           <div className="photos">
@@ -44,7 +44,7 @@ export default function Detail() {
                 <img src="./data/bg.jpg" alt="" />
                 <span>photo_2024_2.png</span>
               </div>
-              <BsDownload className="icon"/>
+              <BsDownload className="icon" />
             </div>
           </div>
         </div>
@@ -55,7 +55,9 @@ export default function Detail() {
           </div>
         </div>
         <button>Block User</button>
-        <button className="logout">Logout</button>
+        <button className="logout" onClick={() => auth.signOut()}>
+          Logout
+        </button>
       </div>
     </div>
   );

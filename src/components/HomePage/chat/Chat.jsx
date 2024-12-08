@@ -1,19 +1,83 @@
 import "./chat.css";
 import React, { useEffect, useRef, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
+import { arrayUnion, doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
+import { db } from "../../../lib/firebase";
+import { useChatStore } from "../../../lib/chatStore";
+import { useUserStore } from "../../../lib/userStore";
 
 export default function Chat() {
+  const [chat, setChat] = useState();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+
+  const { currentUser } = useUserStore();
+  const { chatId, user } = useChatStore();
+
   const endRef = useRef(null);
-  useEffect(()=>{
-    endRef.current?.scrollIntoView({behavior: "smooth"})
-  },[])
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
+    const unSub = onSnapshot(doc(db, "chats", chatId), (res) => {
+      setChat(res.data());
+    });
+
+    return () => {
+      unSub();
+    };
+  }, [chatId]);
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
     setOpen(false);
   };
+
+  const handleSend = async () => {
+    if (text === "") return;
+    
+    setText("")
+
+    try {
+      await updateDoc(doc(db, "chats", chatId), {
+        messages: arrayUnion({
+          senderId: currentUser.id,
+          text,
+          createdAt: new Date(),
+        }),
+      });
+
+      const userIDs = [currentUser.id, user.id];
+
+      userIDs.forEach(async (id) => {
+        const userChatsRef = doc(db, "userchats", id);
+        const userChatsSnapshot = await getDoc(userChatsRef);
+
+        if (userChatsSnapshot.exists()) {
+          const userChatsData = userChatsSnapshot.data();
+
+          const chatIndex = userChatsData.chats.findIndex(
+            (c) => c.chatId === chatId
+          );
+
+          userChatsData.chats[chatIndex].lastMessage = text;
+          userChatsData.chats[chatIndex].isSeen =
+            id === currentUser.id ? true : false;
+          userChatsData.chats[chatIndex].updatedAt = Date.now();
+
+          await updateDoc(userChatsRef, {
+            chats: userChatsData.chats,
+          });
+        }
+      });
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="chat">
       <div className="top">
@@ -31,59 +95,15 @@ export default function Chat() {
         </div>
       </div>
       <div className="center">
-        <div className="message own">
-          <div className="texts">
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Consequatur soluta laudantium voluptatum possimus saepe nostrum
-              ratione porro voluptate quaerat inventore.
-            </p>
-            <span>1 min ago</span>
+        {chat?.messages?.map((message) => (
+          <div className="message own" key={message?.createAt}>
+            <div className="texts">
+              {message.img && <img src={message.img} alt="" />}
+              <p>{message.text}</p>
+              {/* <span>{message}</span> */}
+            </div>
           </div>
-        </div>
-        <div className="message">
-          <img src="./data/bg.jpg" alt="" />
-          <div className="texts">
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Consequatur soluta laudantium voluptatum possimus saepe nostrum
-              ratione porro voluptate quaerat inventore.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message own">
-          <div className="texts">
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Consequatur soluta laudantium voluptatum possimus saepe nostrum
-              ratione porro voluptate quaerat inventore.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message">
-          <img src="./data/bg.jpg" alt="" />
-          <div className="texts">
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Consequatur soluta laudantium voluptatum possimus saepe nostrum
-              ratione porro voluptate quaerat inventore.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-        <div className="message own">
-          <div className="texts">
-            <img src="./data/bg.jpg" alt="" />
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Consequatur soluta laudantium voluptatum possimus saepe nostrum
-              ratione porro voluptate quaerat inventore.
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
+        ))}
         <div ref={endRef}></div>
       </div>
       <div className="bottom">
@@ -110,7 +130,12 @@ export default function Chat() {
             <EmojiPicker open={open} theme="dark" onEmojiClick={handleEmoji} />
           </div>
         </div>
-        <img src="./data/send.svg" className="sendButton" alt="" />
+        <img
+          src="./data/send.svg"
+          onClick={handleSend}
+          className="sendButton"
+          alt=""
+        />
       </div>
     </div>
   );
