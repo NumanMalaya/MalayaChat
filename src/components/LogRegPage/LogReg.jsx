@@ -26,13 +26,16 @@ export default function LogReg() {
   const uploadPic = async () => {
     if (!avatar.file) return null;
     const formData = new FormData();
-    formData.append("avatar", avatar.file);
+    formData.append("file", avatar.file);
+    formData.append("upload_preset", "vkhhawxe");
+    formData.append("cloud_name", "ddurazad4");
+
     try {
-      await axios.post("https://numanmalaya.online/upload.php", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/ddurazad4/image/upload",
+        formData
+      );
+      return response.data.secure_url;
     } catch (error) {
       toast.error("Image upload failed. " + error);
     }
@@ -42,13 +45,11 @@ export default function LogReg() {
     setLoginLoading(true);
     const formData = new FormData(e.target);
     const { email, password } = Object.fromEntries(formData);
-
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Successfully login!");
     } catch (error) {
-      toast.error(error.message);
-      toast.error("Login error!");
+      toast.error("Login error : ", error.message);
     } finally {
       setLoginLoading(false);
     }
@@ -60,21 +61,20 @@ export default function LogReg() {
     const { username, email, password } = Object.fromEntries(formData);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      await uploadPic();
+      const uploadedImgUrl = await uploadPic();
+      toast.success("Account created!");
       await setDoc(doc(db, "users", res.user.uid), {
         username,
         email,
-        avatar: avatar.file.name,
+        avatar: uploadedImgUrl,
         id: res.user.uid,
         blocked: [],
       });
-      toast.success("Account created!");
       await setDoc(doc(db, "userchats", res.user.uid), {
         chats: [],
       });
-    } catch (err) {
-      toast.error(err.message);
-      toast.error("Register error!");
+    } catch (error) {
+      toast.error("Register error : ", error.message);
     } finally {
       setRegisterLoading(false);
     }
