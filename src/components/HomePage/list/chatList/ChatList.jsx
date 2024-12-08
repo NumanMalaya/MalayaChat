@@ -12,7 +12,7 @@ export default function ChatList() {
   const [addMode, setAddmode] = useState(false);
 
   const { currentUser } = useUserStore();
-  const { changeChat, chatId } = useChatStore();
+  const { changeChat, chatId, user } = useChatStore();
 
   useEffect(() => {
     const unSub = onSnapshot(

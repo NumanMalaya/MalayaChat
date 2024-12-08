@@ -1,6 +1,6 @@
 .chat{
     flex: 2;
-    border-right: 1px solid rgba(120, 120, 120, 0.758);
+    border-right: 2px solid rgba(120, 120, 120, 0.758);
     border-left: 1px solid rgba(120, 120, 120, 0.758);
     height: 100%;
     display: flex;

@@ -1,14 +1,16 @@
 import "./detail.css";
 import React from "react";
 import { BsDownload } from "react-icons/bs";
-import { auth } from "../../../lib/firebase";
+import { useChatStore } from "../../../lib/chatStore";
 
 export default function Detail() {
+  const { user } = useChatStore();
+  
   return (
     <div className="detail">
       <div className="user">
-        <img src="./data/bg.jpg" alt="" />
-        <b>Numan Malaya</b>
+        <img src={user.avatar || "./data/avatar.webp"} alt="" />
+        <b>{user.username}</b>
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
       <div className="info">

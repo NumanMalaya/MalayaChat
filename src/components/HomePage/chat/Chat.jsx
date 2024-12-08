@@ -82,9 +82,9 @@ export default function Chat() {
     <div className="chat">
       <div className="top">
         <div className="user">
-          <img src="./data/bg.webp" alt="" />
+          <img src={user.avatar || "./data/avatar.webp"} alt="" />
           <div className="texts">
-            <b>Numan Malaya</b>
+            <b>{user.username}</b>
             <p>Lorem ipsum dolor sit amet.</p>
           </div>
         </div>
