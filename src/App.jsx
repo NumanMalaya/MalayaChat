@@ -11,7 +11,7 @@ export default function App() {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      fetchUserInfo(user.uid);
+      fetchUserInfo(user?.uid);
     });
 
     return () => {
