@@ -39,5 +39,6 @@ body{
         overflow-y: hidden;
         width: 95vw;
         height: 85vh;
+        margin-top: -50px;
     }
 }
