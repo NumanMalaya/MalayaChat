@@ -2,6 +2,7 @@
     flex: 1;
     position: relative;
     .user{
+        width: 275px;
         padding: 10px;
         display: flex;
         flex-direction: column;
@@ -108,4 +109,14 @@
         width: 100%;
     }
 }
-
+@media (max-width: 480px) {
+    .detail{
+        .info{
+            .option{
+                .photos{
+                    height: 275px;
+                }
+            }
+        }
+    }  
+}

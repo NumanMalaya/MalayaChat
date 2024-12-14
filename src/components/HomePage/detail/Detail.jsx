@@ -1,5 +1,5 @@
 import "./detail.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsDownload } from "react-icons/bs";
 import { useChatStore } from "../../../lib/chatStore";
 import { useUserStore } from "../../../lib/userStore";
@@ -16,6 +16,8 @@ export default function Detail() {
   const { user, chatId, isCurrentUserBlocked, changeBlock, isReceiverBlocked } =
     useChatStore();
   const { currentUser } = useUserStore();
+  const [settingView, setSettingView] = useState(false);
+  const [privacyView, setPrivacyView] = useState(false);
   const [mediaView, setMediaView] = useState(null);
 
   const handleMedia = () => {
@@ -24,6 +26,8 @@ export default function Detail() {
       : onSnapshot(doc(db, "chats", chatId), (res) => {
           setMediaView(res.data());
         });
+        setSettingView(false);
+        setPrivacyView(false);
   };
   const handleBlock = async () => {
     if (!user) return;
@@ -51,14 +55,36 @@ export default function Detail() {
         <div className="option">
           <div className="title">
             <span>Chat Settings</span>
-            <img src="./data/up.svg" alt="" />
+            <img
+              src={settingView ? "./data/down.svg" : "./data/up.svg"}
+              onClick={() => {
+                setSettingView(!settingView);
+                setPrivacyView(false);
+                setMediaView(null);
+              }}
+              alt=""
+            />
           </div>
+          { settingView && <div className="setting text-warning">
+            Nothing here yet!
+          </div>}
         </div>
         <div className="option">
           <div className="title">
             <span>Privacy & help</span>
-            <img src="./data/up.svg" alt="" />
+            <img
+              src={privacyView ? "./data/down.svg" : "./data/up.svg"}
+              onClick={() => {
+                setSettingView(false);
+                setPrivacyView(!privacyView);
+                setMediaView(null);
+              }}
+              alt=""
+            />
           </div>
+          { privacyView && <div className="privacy text-warning">
+            Nothing here yet!
+          </div>}
         </div>
         <div className="option">
           <div className="title">
