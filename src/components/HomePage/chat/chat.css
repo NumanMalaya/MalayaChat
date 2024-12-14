@@ -168,7 +168,7 @@
             .icons{
                 gap: 5px;
                 .img{
-                    margin-top: 5px;
+                    margin-top: 0px;
                 }
             }
         }
