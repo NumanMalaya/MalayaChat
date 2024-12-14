@@ -38,7 +38,7 @@ body{
     .container {
         overflow-y: hidden;
         width: 95vw;
-        height: 90vh;
+        height: 80vh;
         margin-top: -10px;
     }
 }
