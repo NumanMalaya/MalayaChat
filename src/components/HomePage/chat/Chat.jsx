@@ -15,6 +15,7 @@ import { useUserStore } from "../../../lib/userStore";
 import axios from "axios";
 
 export default function Chat() {
+  const [pendingStatus, setPendingStatus] = useState(false);
   const [chat, setChat] = useState();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
@@ -38,7 +39,6 @@ export default function Chat() {
       setTimeout(() => {
         endRef.current?.scrollIntoView({ behavior: "smooth" });
       }, 0);
-  
     });
 
     return () => {
@@ -127,6 +127,13 @@ export default function Chat() {
     setText("");
   };
 
+  const handlePendingStatus = () => {
+    setPendingStatus(true); 
+    setTimeout(() => {
+      setPendingStatus(false);
+    }, 3000)
+  }
+
   return (
     <div className="chat">
       <div className="top">
@@ -138,9 +145,21 @@ export default function Chat() {
           </div>
         </div>
         <div className="icons">
-          <img src="./data/phone.svg" alt="" />
-          <img src="./data/video.svg" alt="" />
-          <img src="./data/info.svg" alt="" />
+          <img
+            src="./data/phone.svg"
+            onClick={handlePendingStatus}
+            alt=""
+          />
+          <img
+            src="./data/video.svg"
+            onClick={handlePendingStatus}
+            alt=""
+          />
+          <img
+            src="./data/info.svg"
+            onClick={handlePendingStatus}
+            alt=""
+          />
         </div>
       </div>
       <div className="center">
@@ -219,6 +238,11 @@ export default function Chat() {
           <img src="./data/send.svg" onClick={handleSend} alt="" />
         </button>
       </div>
+      {pendingStatus && (
+        <div className="loading">
+          <p>Nothing here yet!</p>
+        </div>
+      )}
     </div>
   );
 }
