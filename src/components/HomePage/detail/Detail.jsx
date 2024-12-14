@@ -1,16 +1,30 @@
 import "./detail.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsDownload } from "react-icons/bs";
 import { useChatStore } from "../../../lib/chatStore";
 import { useUserStore } from "../../../lib/userStore";
 import { auth, db } from "../../../lib/firebase";
-import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 
 export default function Detail() {
-  const { user, isCurrentUserBlocked, changeBlock, isReceiverBlocked } =
+  const { user, chatId, isCurrentUserBlocked, changeBlock, isReceiverBlocked } =
     useChatStore();
   const { currentUser } = useUserStore();
+  const [mediaView, setMediaView] = useState(null);
 
+  const handleMedia = () => {
+    mediaView
+      ? setMediaView(null)
+      : onSnapshot(doc(db, "chats", chatId), (res) => {
+          setMediaView(res.data());
+        });
+  };
   const handleBlock = async () => {
     if (!user) return;
 
@@ -48,35 +62,46 @@ export default function Detail() {
         </div>
         <div className="option">
           <div className="title">
-            <span>Shared Photos</span>
-            <img src="./data/down.svg" alt="" />
+            <span>Shared Media</span>
+            <img
+              src={mediaView ? "./data/down.svg" : "./data/up.svg"}
+              onClick={handleMedia}
+              alt=""
+            />
           </div>
-          <div className="photos">
-            <div className="photoItem">
-              <div className="photoDetail">
-                <img src="./data/bg.jpg" alt="" />
-                <span>photo_2024_2.png</span>
-              </div>
-              <BsDownload className="icon" />
+          {mediaView && (
+            <div className="photos">
+              {mediaView?.messages?.map(
+                (message) =>
+                  message.img && (
+                    <div className="photoItem">
+                      <div className="photoDetail">
+                        <img src={message.img} alt="" />
+                        <span>
+                          {message.createdAt.toDate().toLocaleString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            hour12: true,
+                          })}
+                        </span>
+                      </div>
+                      <a
+                        href=""
+                        className="text-light"
+                        download="./data/bg.jpg"
+                      >
+                        <BsDownload className="icon" />
+                      </a>
+                    </div>
+                  )
+              )}
             </div>
-          </div>
-          <div className="photos">
-            <div className="photoItem">
-              <div className="photoDetail">
-                <img src="./data/bg.jpg" alt="" />
-                <span>photo_2024_2.png</span>
-              </div>
-              <BsDownload className="icon" />
-            </div>
-          </div>
+          )}
         </div>
-        <div className="option">
-          <div className="title">
-            <span>Shared Files</span>
-            <img src="./data/up.svg" alt="" />
-          </div>
-        </div>
-        <button onClick={handleBlock}>
+        <button className="mt-3" onClick={handleBlock}>
           {isCurrentUserBlocked
             ? "You are blocked"
             : isReceiverBlocked
