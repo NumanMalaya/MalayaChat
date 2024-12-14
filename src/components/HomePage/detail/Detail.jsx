@@ -1,5 +1,5 @@
 import "./detail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsDownload } from "react-icons/bs";
 import { useChatStore } from "../../../lib/chatStore";
 import { useUserStore } from "../../../lib/userStore";
@@ -20,14 +20,20 @@ export default function Detail() {
   const [privacyView, setPrivacyView] = useState(false);
   const [mediaView, setMediaView] = useState(null);
 
+  useEffect(() => {
+    setSettingView(false);
+    setPrivacyView(false);
+    setMediaView(null);
+  }, [chatId]);
+
   const handleMedia = () => {
     mediaView
       ? setMediaView(null)
       : onSnapshot(doc(db, "chats", chatId), (res) => {
           setMediaView(res.data());
         });
-        setSettingView(false);
-        setPrivacyView(false);
+    setSettingView(false);
+    setPrivacyView(false);
   };
   const handleBlock = async () => {
     if (!user) return;
@@ -65,9 +71,9 @@ export default function Detail() {
               alt=""
             />
           </div>
-          { settingView && <div className="setting text-warning">
-            Nothing here yet!
-          </div>}
+          {settingView && (
+            <div className="setting text-warning">Nothing here yet!</div>
+          )}
         </div>
         <div className="option">
           <div className="title">
@@ -82,9 +88,9 @@ export default function Detail() {
               alt=""
             />
           </div>
-          { privacyView && <div className="privacy text-warning">
-            Nothing here yet!
-          </div>}
+          {privacyView && (
+            <div className="privacy text-warning">Nothing here yet!</div>
+          )}
         </div>
         <div className="option">
           <div className="title">
