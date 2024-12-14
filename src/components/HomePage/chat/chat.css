@@ -179,6 +179,9 @@
             gap: 5px;
             .icons{
                 gap: 5px;
+                .img{
+                    margin-top: -5px;
+                }
             }
         }
         .pendingStatus{
