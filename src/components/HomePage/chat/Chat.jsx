@@ -239,7 +239,7 @@ export default function Chat() {
         </button>
       </div>
       {pendingStatus && (
-        <div className="loading">
+        <div className="pendingStatus">
           <p>Nothing here yet!</p>
         </div>
       )}
