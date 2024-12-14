@@ -1,5 +1,6 @@
 .detail{
     flex: 1;
+    position: relative;
     .user{
         padding: 10px;
         display: flex;
@@ -43,7 +44,7 @@
             .photos{
                 display: flex;
                 flex-direction: column;
-                margin-top: 10px;
+                margin-top: 5px;
                 height: 150px;
                 overflow: auto;
                 &::-webkit-scrollbar {
@@ -99,4 +100,12 @@
             }
         }
     }
+    .banner{
+        font-size: 13px;
+        padding-left: 4px;
+        position: absolute;
+        bottom: 5px;
+        width: 100%;
+    }
 }
+

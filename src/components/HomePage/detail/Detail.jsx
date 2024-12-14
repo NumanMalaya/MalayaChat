@@ -45,7 +45,7 @@ export default function Detail() {
       <div className="user">
         <img src={user?.avatar || "./data/avatar.webp"} alt="" />
         <b>{isCurrentUserBlocked ? "User" : user?.username}</b>
-        <p>{isCurrentUserBlocked ? "" : "Lorem ipsum dolor sit amet."}</p>
+        <p>{isCurrentUserBlocked ? "" : "Malaya Chat"}</p>
       </div>
       <div className="info">
         <div className="option">
@@ -101,7 +101,7 @@ export default function Detail() {
             </div>
           )}
         </div>
-        <button className="mt-3" onClick={handleBlock}>
+        <button onClick={handleBlock}>
           {isCurrentUserBlocked
             ? "You are blocked"
             : isReceiverBlocked
@@ -111,6 +111,18 @@ export default function Detail() {
         <button className="logout" onClick={() => auth.signOut()}>
           Logout
         </button>
+        <div className="banner">
+          <span>
+            Designed & Developed by{" "}
+            <a
+              href="https://numanmalaya.online"
+              class="text-warning"
+              target="_blank"
+            >
+              <b>Numan_Malaya</b>
+            </a>
+          </span>
+        </div>
       </div>
     </div>
   );

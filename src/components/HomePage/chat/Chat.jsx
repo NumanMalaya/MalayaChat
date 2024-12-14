@@ -134,7 +134,7 @@ export default function Chat() {
           <img src={user?.avatar || "./data/avatar.webp"} alt="" />
           <div className="texts">
             <b>{isCurrentUserBlocked ? "User" : user?.username}</b>
-            <p>{isCurrentUserBlocked ? "" : "Lorem ipsum dolor sit amet."}</p>
+            <p>{isCurrentUserBlocked ? "" : "Malaya Chat"}</p>
           </div>
         </div>
         <div className="icons">
