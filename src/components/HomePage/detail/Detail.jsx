@@ -8,9 +8,11 @@ import {
   arrayRemove,
   arrayUnion,
   doc,
+  getDoc,
   onSnapshot,
   updateDoc,
 } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 export default function Detail() {
   const { user, chatId, isCurrentUserBlocked, changeBlock, isReceiverBlocked } =
@@ -26,12 +28,19 @@ export default function Detail() {
     setMediaView(null);
   }, [chatId]);
 
-  const handleMedia = () => {
-    mediaView
-      ? setMediaView(null)
-      : onSnapshot(doc(db, "chats", chatId), (res) => {
-          setMediaView(res.data());
-        });
+  const handleMedia = async () => {
+    if (mediaView) {
+      setMediaView(null); 
+    } else {
+      try {
+        const chatDoc = await getDoc(doc(db, "chats", chatId));
+        if (chatDoc.exists()) {
+          setMediaView(chatDoc.data());
+        }
+      } catch (error) {
+        toast.error("Failed to open shared media:", error);
+      }
+    }
     setSettingView(false);
     setPrivacyView(false);
   };
