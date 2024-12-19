@@ -23,6 +23,7 @@ export default function App() {
       {isLoading && <div className="loading">Loading...</div>} 
       {currentUser ? <Home /> : <LogReg />}
       <Notification />
+      <h1 className="appName">Malaya Chat</h1>
     </div>
   );
 }
