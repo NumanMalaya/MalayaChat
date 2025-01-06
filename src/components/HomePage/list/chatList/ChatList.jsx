@@ -4,7 +4,7 @@ import { FaSearch, FaPlus, FaMinus } from "react-icons/fa";
 import AddUser from "./addUser/AddUser";
 import { useUserStore } from "../../../../lib/userStore";
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
-import { db } from "../../../../lib/firebase";
+import { auth, db } from "../../../../lib/firebase";
 import { useChatStore } from "../../../../lib/chatStore";
 import { RingLoader } from "react-spinners";
 
@@ -134,7 +134,9 @@ export default function ChatList() {
           </div>
         ))
       )}
-
+      <button className="logout" onClick={() => auth.signOut()}>
+                Logout
+              </button>
       {addMode && <AddUser />}
     </div>
   );

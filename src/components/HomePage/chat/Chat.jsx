@@ -84,7 +84,11 @@ export default function Chat() {
       if (img.file) {
         imgUrl = await uploadPic();
       }
-
+      setImg({
+        file: null,
+        url: "",
+      });
+      setText("");
       await updateDoc(doc(db, "chats", chatId), {
         messages: arrayUnion({
           senderId: currentUser.id,
@@ -120,11 +124,6 @@ export default function Chat() {
     } catch (error) {
       console.log(error);
     }
-    setImg({
-      file: null,
-      url: "",
-    });
-    setText("");
   };
 
   const handlePendingStatus = () => {
