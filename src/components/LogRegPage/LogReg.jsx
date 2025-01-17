@@ -6,8 +6,15 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, db } from "../../lib/firebase";
-import { doc, setDoc } from "firebase/firestore";
 import axios from "axios";
+import {
+  collection,
+  serverTimestamp,
+  doc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 
 export default function LogReg() {
   const [registerLoading, setRegisterLoading] = useState(false);
@@ -72,6 +79,35 @@ export default function LogReg() {
       });
       await setDoc(doc(db, "userchats", res.user.uid), {
         chats: [],
+      });
+      // adding first chat as a default chat
+      const chatRef = collection(db, "chats");
+      const userChatsRef = collection(db, "userchats");
+      const newChatRef = doc(chatRef);
+      const malayaId = "HXO9oAbDTrfDqhr30jXY1FPB0q52";
+      const userId = res.user.uid;
+
+      await setDoc(newChatRef, {
+        createAt: serverTimestamp(),
+        messages: [],
+      });
+
+      await updateDoc(doc(userChatsRef, malayaId), {
+        chats: arrayUnion({
+          chatId: newChatRef.id,
+          lastMessage: "",
+          receiverId: userId,
+          updateAt: Date.now(),
+        }),
+      });
+
+      await updateDoc(doc(userChatsRef, userId), {
+        chats: arrayUnion({
+          chatId: newChatRef.id,
+          lastMessage: "",
+          receiverId: malayaId,
+          updateAt: Date.now(),
+        }),
       });
     } catch (error) {
       toast.error("Register error : ", error.message);
